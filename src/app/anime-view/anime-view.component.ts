@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Anime } from '../anime';
-import { ANIMELIST } from '../mock-anime';
+import { UnwatchedAnimeService } from '../unwatched-anime.service.ts' 
 
 @Component({
   selector: 'app-anime-view',
@@ -8,14 +8,18 @@ import { ANIMELIST } from '../mock-anime';
   styleUrls: ['./anime-view.component.css']
 })
 export class AnimeViewComponent implements OnInit {
-  animeList: ANIMELIST;
+  animeList: Anime[];
 
-  constructor() { 
-    this.animeList = ANIMELIST;
+  constructor(private unwatchedAnimeService: UnwatchedAnimeService) { 
+  }
+
+  loadAnime(): void {
+    this.unwatchedAnimeService.getUnwatchedAnime()
+      .subscribe(animeList => this.animeList = animeList));
   }
 
   ngOnInit() {
-    console.log(this.animeList);
+    this.loadAnime();
   }
 
 }

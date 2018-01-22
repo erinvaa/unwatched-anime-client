@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AnimeViewComponent } from './anime-view/anime-view.component';
+import { UnwatchedAnimeService } from './unwatched-anime.service.ts'
+import { HttpClientModule } from '@angular/common/http'; 
 
 
 @NgModule({
@@ -12,9 +14,10 @@ import { AnimeViewComponent } from './anime-view/anime-view.component';
     AnimeViewComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UnwatchedAnimeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
