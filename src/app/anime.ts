@@ -1,5 +1,5 @@
 export class Anime {
-  name: String;
-  imageUrl: String;
+  name: string;
+  imageUrl: string;
   unwatchedAiredEpisodes: number;
 }

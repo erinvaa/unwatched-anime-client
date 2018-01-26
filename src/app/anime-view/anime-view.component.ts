@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Anime } from '../anime';
-import { UnwatchedAnimeService } from '../unwatched-anime.service.ts' 
+import { UnwatchedAnimeService } from '../unwatched-anime.service.ts';
 
 @Component({
   selector: 'app-anime-view',
@@ -21,5 +21,4 @@ export class AnimeViewComponent implements OnInit {
   ngOnInit() {
     this.loadAnime();
   }
-
 }

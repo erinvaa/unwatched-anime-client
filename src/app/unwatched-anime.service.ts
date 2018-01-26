@@ -1,29 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Anime } from './anime';
-import { ANIMELIST } from './mock-anime';
-mport { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, filter, tap } from 'rxjs/operators';
 
 
 @Injectable()
 export class UnwatchedAnimeService {
-  private malUrl = 'https://myanimelist.net/animelist/daphoa/load.json?offset=0&status=1&order=1'
+  private malUrl = '/api/daphoa/watching';
 
   constructor(private http: HttpClient) { }
 
   getUnwatchedAnime(): Observable<Anime[]> {
+    var self = this;
     return this.http.get(this.malUrl)
       .pipe(
-        map(x => convertToAnimeObject(x))
+        map(res => self.convertToAnimeList(res))
       );
   }
 
-  convertToAnimeObject(x): Anime {
-    name = x['anime_title'];
-    imageUrl = x['anime_image_path'];
+  convertToAnimeList(res): Anime[] {
+    var self = this;
+    return res.map(item => self.convertToAnimeObject(item))
+      .filter(item => item.unwatchedAiredEpisodes > 0);
+  }
 
-    return Anime { name: name, imageUrl: imageUrl };
+  convertToAnimeObject(x): Anime {
+    var name = x['anime_title'];
+    var imageUrl = x['anime_image_path'];
+    var watchedEpisodes = x['num_watched_episodes']
+    var airedEpisodes = x['anime_aired_episodes']
+
+    var result = { name: name, imageUrl: imageUrl, unwatchedAiredEpisodes: (airedEpisodes - watchedEpisodes) };
+    console.log(result);
+    return result;
   }
 
 
