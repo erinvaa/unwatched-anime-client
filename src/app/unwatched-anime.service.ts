@@ -34,14 +34,14 @@ export class UnwatchedAnimeService {
     var imageUrl = x['anime_image_path'];
     var watchedEpisodes = x['num_watched_episodes']
     var airedEpisodes = x['anime_aired_episodes']
+    var malUrl = this.malSite + x['anime_url']
 
-    var result = { name: name, imageUrl: imageUrl, unwatchedAiredEpisodes: (airedEpisodes - watchedEpisodes) };
-    console.log(result);
+    var result = { name: name, imageUrl: imageUrl, unwatchedAiredEpisodes: (airedEpisodes - watchedEpisodes),
+      malUrl: malUrl};
     return result;
   }
 
 
-
-  loadUserDataFromServer(username): 
+  //  loadUserDataFromServer(username): 
 
 }

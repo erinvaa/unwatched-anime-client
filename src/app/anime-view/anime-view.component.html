@@ -1,7 +1,10 @@
 <h2>Anime List</h2>
 <ul class="anime-list">
   <li *ngFor="let anime of animeList">
-    <img src="{{anime.imageUrl}}" alt="{{anime.name}}">
-    {{anime.name}}
+    <a href="{{anime.malUrl}}" target="_blank">
+      <img src="{{anime.imageUrl}}" alt="{{anime.name}}">
+    </a>
+    <span class="title">{{anime.name}}</span>
+    <span class="unwatched">{{anime.unwatchedAiredEpisodes}}</span>
   </li>
 </ul>
