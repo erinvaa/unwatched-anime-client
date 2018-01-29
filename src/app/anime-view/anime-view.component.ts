@@ -11,14 +11,14 @@ export class AnimeViewComponent implements OnInit {
   animeList: Anime[];
 
   constructor(private unwatchedAnimeService: UnwatchedAnimeService) { 
-  }
+  };
 
   loadAnime(): void {
-    this.unwatchedAnimeService.getUnwatchedAnime()
+    this.unwatchedAnimeService.getUnwatchedAnime('daphoa')
       .subscribe(animeList => this.animeList = animeList));
-  }
+  };
 
   ngOnInit() {
     this.loadAnime();
-  }
+  };
 }

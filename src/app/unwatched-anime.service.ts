@@ -7,13 +7,17 @@ import { map, filter, tap } from 'rxjs/operators';
 
 @Injectable()
 export class UnwatchedAnimeService {
-  private malUrl = '/api/daphoa/watching';
+  private apiUrl1 = '/api/';
+  private apiUrl2 = '/watching';
+  private malSite = 'https://myanimelist.net';
 
   constructor(private http: HttpClient) { }
 
-  getUnwatchedAnime(): Observable<Anime[]> {
+  getUnwatchedAnime(username): Observable<Anime[]> {
     var self = this;
-    return this.http.get(this.malUrl)
+    var url = this.apiUrl1 + username + this.apiUrl2;
+
+    return this.http.get(url)
       .pipe(
         map(res => self.convertToAnimeList(res))
       );
