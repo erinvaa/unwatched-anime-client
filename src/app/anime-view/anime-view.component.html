@@ -1,6 +1,9 @@
 <h2>Anime List</h2>
+<label>Show Completed Shows
+  <input type="checkbox" [checked]="showCompletedShows" (change)="showCompletedShows = !showCompletedShows">
+</label>
 <ul class="anime-list">
-  <li *ngFor="let anime of animeList">
+  <li *ngFor="let anime of (animeList | filterAiringShows: !showCompletedShows)">
     <a href="{{anime.malUrl}}" target="_blank">
       <img src="{{anime.imageUrl}}" alt="{{anime.name}}">
     </a>

@@ -6,4 +6,5 @@ export class Anime {
   unwatchedAiredEpisodes: number;
   malUrl: string;
   sources: AnimeSource[];
+  airing: boolean;
 }

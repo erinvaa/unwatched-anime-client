@@ -39,10 +39,11 @@ export class UnwatchedAnimeService {
     const airedEpisodes = x['anime_aired_episodes'];
     const malUrl = this.malSite + x['anime_url'];
     const sources = UnwatchedAnimeService.convertToSourceObject(x['sources']);
+    const airing = x['anime_airing_status'] == '1';
 
     return {
       name: name, imageUrl: imageUrl, unwatchedAiredEpisodes: (airedEpisodes - watchedEpisodes),
-      malUrl: malUrl, sources: sources
+      malUrl: malUrl, sources: sources, airing: airing
     };
   }
 

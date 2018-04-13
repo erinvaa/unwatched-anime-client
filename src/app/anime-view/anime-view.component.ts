@@ -8,7 +8,8 @@ import { UnwatchedAnimeService } from '../unwatched-anime.service';
   styleUrls: ['./anime-view.component.css']
 })
 export class AnimeViewComponent implements OnInit {
-  animeList: Anime[];
+  animeList: Anime[] = [];
+  showCompletedShows = true;
 
   constructor(private unwatchedAnimeService: UnwatchedAnimeService) { };
 
