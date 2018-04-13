@@ -9,7 +9,7 @@
     </a>
     <span class="title">{{anime.name}}</span>
     <span class="unwatched">{{anime.unwatchedAiredEpisodes}}</span>
-    <a class="source-link" href="{{source.url}}" *ngFor="let source of anime.sources">
+    <a class="source-link" href="{{source.url}}" target="_blank" *ngFor="let source of anime.sources">
       {{source.name}}
     </a>
   </li>
