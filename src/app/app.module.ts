@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AnimeViewComponent } from './anime-view/anime-view.component';
-import { UnwatchedAnimeService } from './unwatched-anime.service.ts'
-import { HttpClientModule } from '@angular/common/http'; 
+import { UnwatchedAnimeService } from './unwatched-anime.service'
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
