@@ -14,14 +14,25 @@
   align-items: center;
   position: relative;
   left: 0;
-  background-color: #EEE;
+  background-color: #CFFFF1;
   margin: .5em;
   padding: .5em;
   border-radius: 4px;
   width: 50em;
 }
-.anime-list li img {
-  height: 70px;  
+.anime-list li.caught-up{
+  background-color: #EBFFF9;
+  color: #474747
+}
+.anime-list li.caught-up.aired{
+  background-color: #FFFEE8;
+}
+.anime-list li.aired{
+  background-color: #FFFDD3;
+}
+.anime-list li img.anime-poster {
+  height: 70px;
+  width: 50px;
 }
 .anime-list li .title {
   padding: 0.8em;
@@ -37,7 +48,7 @@
   position: relative;
   top: -3px;
 }
-.anime-list .badge {
+.anime-list li .badge {
   display: inline-block;
   font-size: small;
   color: white;
@@ -51,6 +62,6 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
-.anime-list .source-link {
+.anime-list li .source-link {
   padding-left: 0.75em;
 }

@@ -54,6 +54,7 @@ export class VideoSourcesService {
       value.next(this.map.get(+key));
       value.complete();
     });
+    this.subjects = null;
 
     return this.map.get(+index)
   }
