@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {AnimeViewComponent} from './anime-view/anime-view.component';
 import {WatchingAnimeService} from './watching-anime.service'
 import {HttpClientModule} from '@angular/common/http';
-import {FilterAiringShows, FilterCaughtUpShows} from "./anime-list-filter-pipes";
+import {FilterAiringShows, FilterCaughtUpShows, SortBy} from "./anime-list-pipes";
 import {VideoSourcesService} from "./video-sources.service";
 
 
@@ -15,7 +15,8 @@ import {VideoSourcesService} from "./video-sources.service";
     AppComponent,
     AnimeViewComponent,
     FilterAiringShows,
-    FilterCaughtUpShows
+    FilterCaughtUpShows,
+    SortBy
   ],
   imports: [
     BrowserModule,

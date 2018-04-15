@@ -22,3 +22,18 @@ export class FilterCaughtUpShows implements PipeTransform {
     return allAnime.filter(value => value.unwatchedAiredEpisodes > 0);
   }
 }
+
+@Pipe({name: 'sortBy'})
+export class SortBy implements PipeTransform {
+  transform(allAnime: Anime[], key: string, ascending: boolean) {
+    return allAnime.sort((a, b) => {
+      if (a[key] > b[key]) {
+        return ascending ? 1 : -1;
+      } else if (a[key] < b[key]) {
+        return ascending ? -1 : 1;
+      } else {
+        return 0;
+      }
+    });
+  }
+}

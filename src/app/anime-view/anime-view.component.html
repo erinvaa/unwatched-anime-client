@@ -6,7 +6,8 @@
   <input type="checkbox" [checked]="hideCaughtUpShows" (change)="hideCaughtUpShows = !hideCaughtUpShows">
 </label>
 <ul class="anime-list">
-  <li *ngFor="let anime of (animeList | filterAiringShows: hideFinishedShows | filterCaughtUpShows: hideCaughtUpShows)">
+  <li *ngFor="let anime of (animeList | filterAiringShows: hideFinishedShows |
+  filterCaughtUpShows: hideCaughtUpShows | sortBy: 'unwatchedAiredEpisodes': false)">
     <a href="{{anime.malUrl}}" target="_blank">
       <img src="{{anime.imageUrl}}" alt="{{anime.name}}">
     </a>
