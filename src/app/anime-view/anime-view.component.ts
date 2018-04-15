@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Anime} from '../anime';
 import {WatchingAnimeService} from '../watching-anime.service';
 import {TimerObservable} from "rxjs/observable/TimerObservable";
@@ -12,16 +12,16 @@ export class AnimeViewComponent implements OnInit, OnDestroy {
   animeList: Anime[] = [];
   hideFinishedShows = true;
   hideCaughtUpShows = true;
-  private timerObersvable;
+  private timerObservable;
+  @Input() username: string;
 
   constructor(private watchingAnimeService: WatchingAnimeService) {
   };
 
   loadAnime(): void {
-    this.timerObersvable = TimerObservable.create(0, 300000)
+    this.timerObservable = TimerObservable.create(0, 300000)
       .subscribe(() => {
-        // TODO remove hard coded username
-        this.watchingAnimeService.getAnimeList('daphoa')
+        this.watchingAnimeService.getAnimeList(this.username)
           .subscribe(animeList => this.animeList = animeList)
       });
   };
@@ -31,6 +31,6 @@ export class AnimeViewComponent implements OnInit, OnDestroy {
   };
 
   ngOnDestroy() {
-    this.timerObersvable.close();
+    this.timerObservable.close();
   }
 }
