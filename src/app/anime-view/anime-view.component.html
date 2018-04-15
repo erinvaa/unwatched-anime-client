@@ -14,8 +14,12 @@
     </a>
     <span class="title">{{anime.name}}</span>
     <a class="source-link" href="{{source.url}}" target="_blank" *ngFor="let source of anime.sources">
-      {{source.name}}
+      <img src="{{source.iconUrl}}" alt="{{source.name}}">
     </a>
-    <span class="unwatched">{{anime.unwatchedAiredEpisodes}}</span>
+    <span class="padding"></span>
+    <div class="unwatched">
+      <span class="unwatched-count">{{anime.unwatchedAiredEpisodes}}</span>
+      <span class="label">episodes</span>
+    </div>
   </li>
 </ul>

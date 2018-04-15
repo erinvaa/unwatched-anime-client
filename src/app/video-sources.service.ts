@@ -11,7 +11,8 @@ export class VideoSourcesService {
   private subjects: Map<number, Subject<AnimeSource>> = new Map();
   private waiting: boolean = false;
 
-  private url: string = "http://localhost:5000/api/video-sources";
+  private static url: string = "api/video-sources";
+  private static hostUrl: string = "http://localhost:5000/";
 
   constructor(private http: HttpClient) {
   }
@@ -34,7 +35,7 @@ export class VideoSourcesService {
     }
 
     this.waiting = true;
-    return this.http.get(this.url)
+    return this.http.get(VideoSourcesService.hostUrl + VideoSourcesService.url)
       .pipe(
         map(res => self.parseResponse(res, index))
       )
@@ -60,6 +61,6 @@ export class VideoSourcesService {
   }
 
   static parseAnimeSource(res): AnimeSource {
-    return {name: res.name, url: null};
+    return {name: res.name, iconUrl: this.hostUrl + res.icon_url, url: null};
   }
 }
