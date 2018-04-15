@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Anime} from './anime';
 import {Observable} from 'rxjs/Observable';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map, filter, tap} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 import {AnimeSource} from "./anime-source";
 import {VideoSourcesService} from "./video-sources.service";
 
@@ -16,7 +16,7 @@ export class WatchingAnimeService {
   constructor(private http: HttpClient, private videoSourceService: VideoSourcesService) {
   }
 
-  getUnwatchedAnime(username): Observable<Anime[]> {
+  getAnimeList(username): Observable<Anime[]> {
     const self = this;
     const url = this.apiUrl1 + username + this.apiUrl2;
 
@@ -29,8 +29,7 @@ export class WatchingAnimeService {
   }
 
   convertToAnimeList(res): Anime[] {
-    const self = this;
-    return res.map(item => self.convertToAnimeObject(item));
+    return res.map(item => this.convertToAnimeObject(item));
   }
 
   convertToAnimeObject(x): Anime {

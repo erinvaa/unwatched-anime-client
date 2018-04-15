@@ -28,7 +28,7 @@ export class VideoSourcesService {
     else if (this.map != null && this.map !== undefined) {
       // Already loaded data
       return Observable.create(observer => {
-        observer.next(this.map[+index]);
+        observer.next(this.map.get(+index));
         observer.complete();
       });
     }
