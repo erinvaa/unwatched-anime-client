@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { UnwatchedAnimeService } from './unwatched-anime.service';
+import { WatchingAnimeService } from './watching-anime.service';
 
-describe('UnwatchedAnimeService', () => {
+describe('WatchingAnimeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UnwatchedAnimeService]
+      providers: [WatchingAnimeService]
     });
   });
 
-  it('should be created', inject([UnwatchedAnimeService], (service: UnwatchedAnimeService) => {
+  it('should be created', inject([WatchingAnimeService], (service: WatchingAnimeService) => {
     expect(service).toBeTruthy();
   }));
 });

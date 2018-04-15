@@ -4,9 +4,9 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {AnimeViewComponent} from './anime-view/anime-view.component';
-import {UnwatchedAnimeService} from './unwatched-anime.service'
+import {WatchingAnimeService} from './watching-anime.service'
 import {HttpClientModule} from '@angular/common/http';
-import {ExponentialStrengthPipe} from "./airing-shows-pipe";
+import {FilterAiringShows, FilterCaughtUpShows} from "./anime-list-filter-pipes";
 import {VideoSourcesService} from "./video-sources.service";
 
 
@@ -14,13 +14,14 @@ import {VideoSourcesService} from "./video-sources.service";
   declarations: [
     AppComponent,
     AnimeViewComponent,
-    ExponentialStrengthPipe
+    FilterAiringShows,
+    FilterCaughtUpShows
   ],
   imports: [
     BrowserModule,
     HttpClientModule
   ],
-  providers: [UnwatchedAnimeService, VideoSourcesService],
+  providers: [WatchingAnimeService, VideoSourcesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

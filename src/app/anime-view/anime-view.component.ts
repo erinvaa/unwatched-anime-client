@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Anime} from '../anime';
-import {UnwatchedAnimeService} from '../unwatched-anime.service';
+import {WatchingAnimeService} from '../watching-anime.service';
 
 @Component({
   selector: 'app-anime-view',
@@ -9,9 +9,10 @@ import {UnwatchedAnimeService} from '../unwatched-anime.service';
 })
 export class AnimeViewComponent implements OnInit {
   animeList: Anime[] = [];
-  hideCompletedShows = true;
+  hideFinishedShows = true;
+  hideCaughtUpShows = true;
 
-  constructor(private unwatchedAnimeService: UnwatchedAnimeService) {
+  constructor(private unwatchedAnimeService: WatchingAnimeService) {
   };
 
   loadAnime(): void {

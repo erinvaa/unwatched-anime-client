@@ -8,7 +8,7 @@ import {VideoSourcesService} from "./video-sources.service";
 
 
 @Injectable()
-export class UnwatchedAnimeService {
+export class WatchingAnimeService {
   private apiUrl1 = 'http://localhost:5000/api/';
   private apiUrl2 = '/watching';
   private malSite = 'https://myanimelist.net';
@@ -30,8 +30,7 @@ export class UnwatchedAnimeService {
 
   convertToAnimeList(res): Anime[] {
     const self = this;
-    return res.map(item => self.convertToAnimeObject(item))
-      .filter(item => item.unwatchedAiredEpisodes > 0);
+    return res.map(item => self.convertToAnimeObject(item));
   }
 
   convertToAnimeObject(x): Anime {
