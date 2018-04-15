@@ -7,4 +7,5 @@ export class Anime {
   malUrl: string;
   sources: AnimeSource[];
   airing: boolean;
+  timeUntilNextEpisode: number;
 }

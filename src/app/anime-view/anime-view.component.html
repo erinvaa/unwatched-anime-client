@@ -7,7 +7,7 @@
 </label>
 <ul class="anime-list">
   <li *ngFor="let anime of (animeList | filterAiringShows: hideFinishedShows |
-  filterCaughtUpShows: hideCaughtUpShows | sortBy: 'unwatchedAiredEpisodes': false)"
+  filterCaughtUpShows: hideCaughtUpShows | sortBy: ['unwatchedAiredEpisodes', 'timeUntilNextEpisode', 'name']: [false, true])"
   [ngClass]="{'caught-up': anime.unwatchedAiredEpisodes == 0, 'aired': !anime.airing}">
     <a href="{{anime.malUrl}}" target="_blank">
       <img class="anime-poster" src="{{anime.imageUrl}}" alt="{{anime.name}}">

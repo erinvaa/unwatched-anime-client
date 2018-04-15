@@ -40,10 +40,11 @@ export class WatchingAnimeService {
     const malUrl = this.malSite + x['anime_url'];
     const sources = this.convertToSourceObject(x['sources']);
     const airing = x['anime_airing_status'] == '1';
+    const timeUntilNextEpisode = x['time_until_next_episode'];
 
     return {
       name: name, imageUrl: imageUrl, unwatchedAiredEpisodes: (airedEpisodes - watchedEpisodes),
-      malUrl: malUrl, sources: sources, airing: airing
+      malUrl: malUrl, sources: sources, airing: airing, timeUntilNextEpisode: timeUntilNextEpisode
     };
   }
 
