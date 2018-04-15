@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Anime } from './anime';
-import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, filter, tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Anime} from './anime';
+import {Observable} from 'rxjs/Observable';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {map, filter, tap} from 'rxjs/operators';
 import {AnimeSource} from "./anime-source";
+import {VideoSourcesService} from "./video-sources.service";
 
 
 @Injectable()
@@ -12,7 +13,8 @@ export class UnwatchedAnimeService {
   private apiUrl2 = '/watching';
   private malSite = 'https://myanimelist.net';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private videoSourceService: VideoSourcesService) {
+  }
 
   getUnwatchedAnime(username): Observable<Anime[]> {
     const self = this;
@@ -38,7 +40,7 @@ export class UnwatchedAnimeService {
     const watchedEpisodes = x['num_watched_episodes'];
     const airedEpisodes = x['anime_aired_episodes'];
     const malUrl = this.malSite + x['anime_url'];
-    const sources = UnwatchedAnimeService.convertToSourceObject(x['sources']);
+    const sources = this.convertToSourceObject(x['sources']);
     const airing = x['anime_airing_status'] == '1';
 
     return {
@@ -47,17 +49,17 @@ export class UnwatchedAnimeService {
     };
   }
 
-  private static convertToSourceObject(sourcesObject): AnimeSource[] {
-    let result : AnimeSource[] = [];
+  private convertToSourceObject(sourcesObject): AnimeSource[] {
+    let result: AnimeSource[] = [];
     for (let key in sourcesObject) {
       if (sourcesObject.hasOwnProperty(key)) {
-        result.push({name: key, url: sourcesObject[key]});
+        this.videoSourceService.getSource(key)
+          .subscribe(template => result.push(new AnimeSource(sourcesObject[key], template)));
+        // let template: AnimeSource = this.videoSourceService.getSource(key);
+        // result.push(new AnimeSource(sourcesObject[key], template));
       }
     }
     return result
   }
-
-
-  //  loadUserDataFromServer(username):
 
 }

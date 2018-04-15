@@ -1,12 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 
-import { AppComponent } from './app.component';
-import { AnimeViewComponent } from './anime-view/anime-view.component';
-import { UnwatchedAnimeService } from './unwatched-anime.service'
-import { HttpClientModule } from '@angular/common/http';
+import {AppComponent} from './app.component';
+import {AnimeViewComponent} from './anime-view/anime-view.component';
+import {UnwatchedAnimeService} from './unwatched-anime.service'
+import {HttpClientModule} from '@angular/common/http';
 import {ExponentialStrengthPipe} from "./airing-shows-pipe";
+import {VideoSourcesService} from "./video-sources.service";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {ExponentialStrengthPipe} from "./airing-shows-pipe";
     BrowserModule,
     HttpClientModule
   ],
-  providers: [UnwatchedAnimeService],
+  providers: [UnwatchedAnimeService, VideoSourcesService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

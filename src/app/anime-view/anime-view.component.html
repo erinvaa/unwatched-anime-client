@@ -1,16 +1,16 @@
 <h2>Anime List</h2>
-<label>Show Completed Shows
-  <input type="checkbox" [checked]="showCompletedShows" (change)="showCompletedShows = !showCompletedShows">
+<label>Hide Completed Shows
+  <input type="checkbox" [checked]="hideCompletedShows" (change)="hideCompletedShows = !hideCompletedShows">
 </label>
 <ul class="anime-list">
-  <li *ngFor="let anime of (animeList | filterAiringShows: !showCompletedShows)">
+  <li *ngFor="let anime of (animeList | filterAiringShows: hideCompletedShows)">
     <a href="{{anime.malUrl}}" target="_blank">
       <img src="{{anime.imageUrl}}" alt="{{anime.name}}">
     </a>
     <span class="title">{{anime.name}}</span>
-    <span class="unwatched">{{anime.unwatchedAiredEpisodes}}</span>
     <a class="source-link" href="{{source.url}}" target="_blank" *ngFor="let source of anime.sources">
       {{source.name}}
     </a>
+    <span class="unwatched">{{anime.unwatchedAiredEpisodes}}</span>
   </li>
 </ul>

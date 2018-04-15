@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Anime } from '../anime';
-import { UnwatchedAnimeService } from '../unwatched-anime.service';
+import {Component, OnInit} from '@angular/core';
+import {Anime} from '../anime';
+import {UnwatchedAnimeService} from '../unwatched-anime.service';
 
 @Component({
   selector: 'app-anime-view',
@@ -9,11 +9,13 @@ import { UnwatchedAnimeService } from '../unwatched-anime.service';
 })
 export class AnimeViewComponent implements OnInit {
   animeList: Anime[] = [];
-  showCompletedShows = true;
+  hideCompletedShows = true;
 
-  constructor(private unwatchedAnimeService: UnwatchedAnimeService) { };
+  constructor(private unwatchedAnimeService: UnwatchedAnimeService) {
+  };
 
   loadAnime(): void {
+    // TODO remove hard coded username
     this.unwatchedAnimeService.getUnwatchedAnime('daphoa')
       .subscribe(animeList => this.animeList = animeList);
   };
