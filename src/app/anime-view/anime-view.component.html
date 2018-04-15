@@ -1,9 +1,9 @@
 <h2>Anime List</h2>
 <label>Only Airing Shows
-  <input type="checkbox" [checked]="hideFinishedShows" (change)="hideFinishedShows = !hideFinishedShows">
+  <input type="checkbox" [checked]="hideFinishedShows" (change)="toggleHideFinishedShows()">
 </label>
 <label>Hide No New Episodes
-  <input type="checkbox" [checked]="hideCaughtUpShows" (change)="hideCaughtUpShows = !hideCaughtUpShows">
+  <input type="checkbox" [checked]="hideCaughtUpShows" (change)="toggleHideCaughtUpShows()">
 </label>
 <ul class="anime-list">
   <li *ngFor="let anime of (animeList | filterAiringShows: hideFinishedShows |

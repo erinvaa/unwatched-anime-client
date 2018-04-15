@@ -2,6 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Anime} from '../anime';
 import {WatchingAnimeService} from '../watching-anime.service';
 import {TimerObservable} from "rxjs/observable/TimerObservable";
+import {UserSettingsService} from "./user-settings.service";
 
 @Component({
   selector: 'app-anime-view',
@@ -10,12 +11,14 @@ import {TimerObservable} from "rxjs/observable/TimerObservable";
 })
 export class AnimeViewComponent implements OnInit, OnDestroy {
   animeList: Anime[] = [];
-  hideFinishedShows = true;
-  hideCaughtUpShows = true;
+  hideFinishedShows: boolean;
+  hideCaughtUpShows: boolean;
   private timerObservable;
   @Input() username: string;
 
-  constructor(private watchingAnimeService: WatchingAnimeService) {
+  constructor(private watchingAnimeService: WatchingAnimeService, private userSettingsService: UserSettingsService) {
+    this.hideFinishedShows = this.userSettingsService.getSetting('hideFinishedShows', true);
+    this.hideCaughtUpShows = this.userSettingsService.getSetting('hideCaughtUpShows', true);
   };
 
   loadAnime(): void {
@@ -25,6 +28,16 @@ export class AnimeViewComponent implements OnInit, OnDestroy {
           .subscribe(animeList => this.animeList = animeList)
       });
   };
+
+  private toggleHideFinishedShows() {
+    this.hideFinishedShows = !this.hideFinishedShows;
+    this.userSettingsService.setSetting('hideFinishedShows', this.hideFinishedShows);
+  }
+
+  private toggleHideCaughtUpShows() {
+    this.hideCaughtUpShows = !this.hideCaughtUpShows;
+    this.userSettingsService.setSetting('hideCaughtUpShows', this.hideCaughtUpShows);
+  }
 
   ngOnInit() {
     this.loadAnime();
